@@ -121,8 +121,36 @@ public final class LoanSummary {
         return new LoanSummary(totalFeeChargesDueAtDisbursement);
     }
 
-    LoanSummary() {
-        //
+    public LoanSummary() {
+        this.totalFeeChargesOutstanding = new BigDecimal(1000.0);
+        this.totalFeeChargesWrittenOff = new BigDecimal(1000.0);
+        this.totalFeeChargesWaived = new BigDecimal(1000.0);
+        this.totalFeeChargesRepaid = new BigDecimal(1000.0);
+        this.totalFeeChargesDueAtDisbursement = new BigDecimal(1000.0);
+        this.totalFeeChargesCharged = new BigDecimal(1000.0);
+        this.totalInterestOutstanding = new BigDecimal(1000.0);
+        this.totalInterestWrittenOff = new BigDecimal(1000.0);
+        this.totalInterestWaived = new BigDecimal(1000.0);
+        this.totalInterestRepaid = new BigDecimal(1000.0);
+        this.totalInterestCharged = new BigDecimal(1000.0);
+        this.totalPrincipalOutstanding = new BigDecimal(1000.0);
+        this.totalPrincipalWrittenOff = new BigDecimal(1000.0);
+        this.totalPrincipalRepaid = new BigDecimal(1000.0);
+        this.totalPrincipalDisbursed = new BigDecimal(1000.0);
+        this.totalCostOfLoan = new BigDecimal(1000.0);
+        this.totalExpectedCostOfLoan = new BigDecimal(1000.0);
+        this.totalOutstanding = new BigDecimal(1000.0);
+        this.totalWrittenOff = new BigDecimal(1000.0);
+        this.totalWaived = new BigDecimal(1000.0);
+        this.totalCostOfLoan = new BigDecimal(1000.0);
+        this.totalExpectedCostOfLoan = new BigDecimal(1000.0);
+        this.totalRepayment = new BigDecimal(1000.0);
+        this.totalExpectedRepayment = new BigDecimal(1000.0);
+        this.totalPenaltyChargesOutstanding = new BigDecimal(1000.0);
+        this.totalPenaltyChargesWrittenOff = new BigDecimal(1000.0);
+        this.totalPenaltyChargesWaived = new BigDecimal(1000.0);
+        this.totalPenaltyChargesRepaid = new BigDecimal(1000.0);
+        this.totalPenaltyChargesCharged = new BigDecimal(1000.0);
     }
 
     private LoanSummary(final BigDecimal totalFeeChargesDueAtDisbursement) {

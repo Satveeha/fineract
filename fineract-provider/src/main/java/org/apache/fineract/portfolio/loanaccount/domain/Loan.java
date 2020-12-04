@@ -317,7 +317,7 @@ public class Loan extends AbstractPersistableCustom {
     private Set<LoanOfficerAssignmentHistory> loanOfficerHistory;
 
     @OrderBy(value = "installmentNumber")
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "loan", orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "loan", orphanRemoval = true, fetch = FetchType.EAGER)
     private List<LoanRepaymentScheduleInstallment> repaymentScheduleInstallments = new ArrayList<>();
 
     @OrderBy(value = "dateOf, id")
@@ -519,6 +519,27 @@ public class Loan extends AbstractPersistableCustom {
         // rates added here
         this.rates = rates;
 
+    }
+
+    public Loan(String accountNo, Integer loanStatus, Integer loanType, BigDecimal proposedPrincipal,
+            LoanProductRelatedDetail loanProductRelatedDetail, BigDecimal approvedPrincipal, Integer termFrequency,
+            Integer termPeriodFrequencyType, LoanSummary loanSummary) {
+
+        if (StringUtils.isBlank(accountNo)) {
+            this.accountNumber = new RandomPasswordGenerator(19).generate();
+            this.accountNumberRequiresAutoGeneration = true;
+        } else {
+            this.accountNumber = accountNo;
+        }
+
+        this.loanStatus = loanStatus;
+        this.loanType = loanType;
+        this.proposedPrincipal = proposedPrincipal;
+        this.loanRepaymentScheduleDetail = loanProductRelatedDetail;
+        this.approvedPrincipal = approvedPrincipal;
+        this.termFrequency = termFrequency;
+        this.termPeriodFrequencyType = termPeriodFrequencyType;
+        this.summary = loanSummary;
     }
 
     private LoanSummary updateSummaryWithTotalFeeChargesDueAtDisbursement(final BigDecimal feeChargesDueAtDisbursement) {

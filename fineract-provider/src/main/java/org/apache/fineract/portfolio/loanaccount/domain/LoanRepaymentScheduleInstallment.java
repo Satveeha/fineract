@@ -156,6 +156,19 @@ public final class LoanRepaymentScheduleInstallment extends AbstractAuditableCus
         this.loanCompoundingDetails = compoundingDetails;
     }
 
+    public LoanRepaymentScheduleInstallment(final Loan loan, final Integer installmentNumber, final LocalDate dueDate,
+            final boolean obligationsMet, final boolean recalculatedInterestComponent,
+            final Set<LoanInterestRecalcualtionAdditionalDetails> compoundingDetails, BigDecimal principal, BigDecimal penaltyCharges) {
+        this.loan = loan;
+        this.installmentNumber = installmentNumber;
+        this.dueDate = dueDate.toDateTimeAtStartOfDay().toDate();
+        this.principal = defaultToNullIfZero(principal);
+        this.penaltyCharges = defaultToNullIfZero(penaltyCharges);
+        this.obligationsMet = false;
+        this.recalculatedInterestComponent = recalculatedInterestComponent;
+        this.loanCompoundingDetails = compoundingDetails;
+    }
+
     public LoanRepaymentScheduleInstallment(final Loan loan) {
         this.loan = loan;
         this.installmentNumber = null;

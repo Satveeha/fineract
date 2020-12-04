@@ -62,5 +62,3 @@ public class ServerApplication extends SpringBootServletInitializer {
         // ApplicationExitUtil.waitForKeyPressToCleanlyExit(ctx);
     }
 }
-
-

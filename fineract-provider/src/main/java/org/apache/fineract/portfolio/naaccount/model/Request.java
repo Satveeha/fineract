@@ -7,6 +7,8 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Request {
 
+    private Long loanId;
+    private int installment;
     private Double loanAmount;
     private Integer duration;
     private String startDate;
@@ -26,6 +28,14 @@ public class Request {
     private String dateFormat;
     private List<RepaymentSchedule> principalDueDates;
     private List<RepaymentSchedule> interestDueDates;
+
+    public Long getLoanId() {
+        return loanId;
+    }
+
+    public int getInstallment() {
+        return installment;
+    }
 
     public Double getLoanAmount() {
         return loanAmount;

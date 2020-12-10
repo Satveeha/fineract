@@ -70,4 +70,14 @@ public class RepaymentSchedulerAPI {
 
         return repaymentSchedulerService.generateSchedule(request);
     }
+
+    @POST
+    @Path("rescheduleCount")
+    @Consumes({ MediaType.APPLICATION_JSON })
+    @Produces({ MediaType.APPLICATION_JSON })
+    @ApiResponses(@ApiResponse(responseCode = "200", description = "OK"))
+    public int newPaymentPlanCount(@Parameter Request request) throws ApiException {
+        List<Response> response = repaymentSchedulerService.generateSchedule(request);
+        return response.size();
+    }
 }

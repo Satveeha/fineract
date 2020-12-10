@@ -1,15 +1,13 @@
 package org.apache.fineract.portfolio.naaccount.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.LocalDate;
+import org.codehaus.jackson.annotate.JsonAutoDetect;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
+@JsonAutoDetect
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class InterestRateInfo {
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    // @JsonDeserialize(using = LocalDateDeserializer.class)
-    // @JsonSerialize(using = LocalDateSerializer.class)
-    @JsonProperty("date")
     private LocalDate date;
     private Double interestRate;
 

@@ -1,16 +1,19 @@
 package org.apache.fineract.portfolio.naaccount.model;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
-import org.apache.fineract.portfolio.naaccount.domain.RepaymentSchedule;
+import org.codehaus.jackson.annotate.JsonAutoDetect;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
+@JsonAutoDetect
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Request {
 
     private Long loanId;
     private int installment;
-    private Double loanAmount;
-    private Integer duration;
+    private Double principal;
+    private Integer tenor;
     private String startDate;
     private String interestStartDate;
     private String principalStartDate;
@@ -20,14 +23,13 @@ public class Request {
     private Integer principalRepaymentFrequency;
     private Double nominalInterestRate;
     private boolean isInterestDueWithPrincipal;
-    private boolean isPrincipalDueWithInterest;
     private Integer principalRepaymentDayOfMonth;
     private Integer interestRepaymentDayOfMonth;
     private Integer noOfDaysInYear;
-    private Integer noOfDaysInMonthMethod;
-    private String dateFormat;
-    private List<RepaymentSchedule> principalDueDates;
-    private List<RepaymentSchedule> interestDueDates;
+    private String noOfDaysInMonth;
+    private List<CustomInterestRepayment> customInterestRepayments;
+    private List<CustomPrincipalRepayment> customPrincipalRepayments;
+    private List<InterestRateInfo> floatingInterestRates;
 
     public Long getLoanId() {
         return loanId;
@@ -37,24 +39,24 @@ public class Request {
         return installment;
     }
 
-    public Double getLoanAmount() {
-        return loanAmount;
+    public Double getPrincipal() {
+        return principal;
     }
 
-    public Integer getDuration() {
-        return duration;
+    public Integer getTenor() {
+        return tenor;
     }
 
-    public String getStartDate() {
-        return startDate;
+    public LocalDate getStartDate() {
+        return LocalDate.parse(startDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
 
-    public String getInterestStartDate() {
-        return interestStartDate;
+    public LocalDate getInterestStartDate() {
+        return LocalDate.parse(interestStartDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
 
-    public String getPrincipalStartDate() {
-        return principalStartDate;
+    public LocalDate getPrincipalStartDate() {
+        return LocalDate.parse(principalStartDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
 
     public Integer getNoOfDecimal() {
@@ -81,10 +83,6 @@ public class Request {
         return isInterestDueWithPrincipal;
     }
 
-    public boolean isPrincipalDueWithInterest() {
-        return isPrincipalDueWithInterest;
-    }
-
     public Integer getPrincipalRepaymentDayOfMonth() {
         return principalRepaymentDayOfMonth;
     }
@@ -97,19 +95,19 @@ public class Request {
         return noOfDaysInYear;
     }
 
-    public Integer getNoOfDaysInMonthMethod() {
-        return noOfDaysInMonthMethod;
+    public String getNoOfDaysInMonth() {
+        return noOfDaysInMonth;
     }
 
-    public String getDateFormat() {
-        return dateFormat;
+    public List<CustomInterestRepayment> getCustomInterestRepayments() {
+        return customInterestRepayments;
     }
 
-    public List<RepaymentSchedule> getPrincipalDueDates() {
-        return principalDueDates;
+    public List<CustomPrincipalRepayment> getCustomPrincipalRepayments() {
+        return customPrincipalRepayments;
     }
 
-    public List<RepaymentSchedule> getInterestDueDates() {
-        return interestDueDates;
+    public List<InterestRateInfo> getFloatingInterestRates() {
+        return floatingInterestRates;
     }
 }

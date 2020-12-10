@@ -45,10 +45,13 @@ public class RepaymentSchedulerService {
     }
 
     private void validateRequest(Request request) {
-        if (request.getLoanAmount() <= 0) throw new ApiException(ErrorConstants.INVALID_LOAN_AMOUNT, HttpStatus.BAD_REQUEST);
+        if (request.getPrincipal() <= 0) throw new ApiException(ErrorConstants.INVALID_LOAN_AMOUNT, HttpStatus.BAD_REQUEST);
         if (request.getPrincipalRepaymentFrequency() <= 0 || request.getInterestRepaymentFrequency() <= 0)
             throw new ApiException(ErrorConstants.INVALID_REPAYMENT_FREQUENCY, HttpStatus.BAD_REQUEST);
         if (request.getNominalInterestRate() <= 0) throw new ApiException(ErrorConstants.INVALID_NOMINAL_INTEREST, HttpStatus.BAD_REQUEST);
         if (request.getNoOfDecimal() < 0) throw new ApiException(ErrorConstants.INVALID_SCALE, HttpStatus.BAD_REQUEST);
+        if (request.getInterestStartDate().isBefore(request.getStartDate())
+                || request.getPrincipalStartDate().isBefore(request.getStartDate()))
+            throw new ApiException(ErrorConstants.INVALID_DATE, HttpStatus.BAD_REQUEST);
     }
 }

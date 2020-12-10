@@ -9,19 +9,23 @@ public class Response {
     private BigDecimal principalDue;
     private BigDecimal interestDue;
     private BigDecimal totalAmountDue;
+    private BigDecimal outstandingPrincipal;
 
     public Response(final PaymentPerMonth paymentPerMonth) {
         this.paymentDate = paymentPerMonth.getPaymentDate().toString();
         this.principalDue = paymentPerMonth.getPrincipalDue();
         this.interestDue = paymentPerMonth.getInterestDue();
         this.totalAmountDue = paymentPerMonth.getPrincipalDue().add(paymentPerMonth.getInterestDue());
+        this.outstandingPrincipal = paymentPerMonth.getOutstandingPrincipal();
     }
 
-    public Response(String paymentDate, BigDecimal principalDue, BigDecimal interestDue, BigDecimal totalAmountDue) {
+    public Response(String paymentDate, BigDecimal principalDue, BigDecimal interestDue, BigDecimal totalAmountDue,
+            BigDecimal outstandingPrincipal) {
         this.paymentDate = paymentDate;
         this.principalDue = principalDue;
         this.interestDue = interestDue;
         this.totalAmountDue = totalAmountDue;
+        this.outstandingPrincipal = outstandingPrincipal;
     }
 
     public String getPaymentDate() {
@@ -54,5 +58,13 @@ public class Response {
 
     public void setTotalAmountDue(BigDecimal totalAmountDue) {
         this.totalAmountDue = totalAmountDue;
+    }
+
+    public BigDecimal getOutstandingPrincipal() {
+        return outstandingPrincipal;
+    }
+
+    public void setOutstandingPrincipal(BigDecimal outstandingPrincipal) {
+        this.outstandingPrincipal = outstandingPrincipal;
     }
 }

@@ -10,10 +10,6 @@ public class DateHelper {
 
     }
 
-    public static LocalDate getLastDayOfMonth(LocalDate nextPaymentDate) {
-        return nextPaymentDate.withDayOfMonth(nextPaymentDate.getMonth().length(nextPaymentDate.isLeapYear()));
-    }
-
     public static LocalDate getNextPaymentDate(LocalDate nextPaymentDate, Request request, Boolean isInterest) {
         nextPaymentDate = nextPaymentDate.plusMonths(
                 Boolean.TRUE.equals(isInterest) ? request.getInterestRepaymentFrequency() : request.getPrincipalRepaymentFrequency());

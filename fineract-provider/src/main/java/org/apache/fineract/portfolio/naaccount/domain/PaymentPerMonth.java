@@ -8,17 +8,17 @@ public class PaymentPerMonth {
     private LocalDate paymentDate;
     private BigDecimal principalDue;
     private BigDecimal interestDue;
-    private BigDecimal remainingOutstandingPrincipal;
+    private BigDecimal outstandingPrincipal;
     private BigDecimal carryOverInterest;
 
     public PaymentPerMonth() {}
 
-    public PaymentPerMonth(LocalDate paymentDate, BigDecimal principalDue, BigDecimal interestDue, BigDecimal remainingOutstandingPrincipal,
+    public PaymentPerMonth(LocalDate paymentDate, BigDecimal principalDue, BigDecimal interestDue, BigDecimal outstandingPrincipal,
             BigDecimal carryOverInterest) {
         this.paymentDate = paymentDate;
         this.principalDue = principalDue;
         this.interestDue = interestDue;
-        this.remainingOutstandingPrincipal = remainingOutstandingPrincipal;
+        this.outstandingPrincipal = outstandingPrincipal;
         this.carryOverInterest = carryOverInterest;
     }
 
@@ -26,7 +26,7 @@ public class PaymentPerMonth {
         this.paymentDate = oldPaymentPerMonth.paymentDate;
         this.principalDue = oldPaymentPerMonth.principalDue;
         this.interestDue = oldPaymentPerMonth.interestDue;
-        this.remainingOutstandingPrincipal = oldPaymentPerMonth.remainingOutstandingPrincipal;
+        this.outstandingPrincipal = oldPaymentPerMonth.outstandingPrincipal;
         this.carryOverInterest = oldPaymentPerMonth.carryOverInterest;
     }
 
@@ -54,12 +54,12 @@ public class PaymentPerMonth {
         this.interestDue = interestDue;
     }
 
-    public BigDecimal getRemainingOutstandingPrincipal() {
-        return remainingOutstandingPrincipal;
+    public BigDecimal getOutstandingPrincipal() {
+        return outstandingPrincipal;
     }
 
-    public void setRemainingOutstandingPrincipal(BigDecimal remainingOutstandingPrincipal) {
-        this.remainingOutstandingPrincipal = remainingOutstandingPrincipal;
+    public void setOutstandingPrincipal(BigDecimal outstandingPrincipal) {
+        this.outstandingPrincipal = outstandingPrincipal;
     }
 
     public BigDecimal getCarryOverInterest() {

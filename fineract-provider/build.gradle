@@ -301,7 +301,7 @@ spotless {
 rat {
     verbose = false
     reportDir = new File(buildDir,'reports/rat')
-    failOnError = false
+    failOnError=false
     excludes = [
         '**/*.launch',
         '**/licenses/**',

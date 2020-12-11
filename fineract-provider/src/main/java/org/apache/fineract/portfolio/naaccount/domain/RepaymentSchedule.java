@@ -98,11 +98,18 @@ public class RepaymentSchedule implements Comparable<RepaymentSchedule> {
         return repaymentDate.compareTo(repaymentSchedule.repaymentDate);
     }
 
-    /*
-     * @Override public boolean equals(Object obj) { if (obj == null) { return false; }
-     *
-     * if (obj.getClass() != this.getClass()) { return false; } final RepaymentSchedule other = (RepaymentSchedule) obj;
-     * return this.equals(other); }
-     */
+    // @Override
+    // public boolean equals(Object obj) {
+    // if (obj == null) {
+    // return false;
+    // }
+    //
+    // if (obj.getClass() != this.getClass()) {
+    // return false;
+    // }
+    //
+    // final RepaymentSchedule other = (RepaymentSchedule) obj;
+    // return this.equals(other);
+    // }
 
 }

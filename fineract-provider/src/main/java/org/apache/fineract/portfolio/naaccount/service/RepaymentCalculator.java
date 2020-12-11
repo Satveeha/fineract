@@ -74,7 +74,6 @@ public class RepaymentCalculator {
         return BigDecimal.valueOf(interestRate).divide(BigDecimal.valueOf(100d), Constants.NO_OF_DECIMALS, RoundingMode.HALF_UP);
     }
 
-    @SuppressWarnings("BigDecimalEquals")
     private PaymentPerMonth getCurrentPayment(PaymentPerMonth prevPayment, List<RepaymentSchedule> repaymentSchedule, int index,
             Request request, BigDecimal principalPerMonth, BigDecimal interestRatePerMonth, Map<LocalDate, Double> floatingInterestRates) {
         BigDecimal noOfDaysFromLastPayment;

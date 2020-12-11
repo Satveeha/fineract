@@ -5,7 +5,7 @@ import java.util.Optional;
 import org.apache.fineract.portfolio.loanaccount.domain.Loan;
 import org.apache.fineract.portfolio.loanaccount.domain.LoanRepaymentScheduleInstallment;
 
-public interface SampleService {
+public interface DatabaseAccessService {
 
     Boolean insertLoan(Loan loan);
 
@@ -17,5 +17,4 @@ public interface SampleService {
 
     Boolean saveLoanRepaymentScheduleInstallment(LoanRepaymentScheduleInstallment loanRepaymentScheduleInstallment);
 
-    List<LoanRepaymentScheduleInstallment> retrieveRepaymentScheduleInstallmentByLoanId(Loan loan);
 }

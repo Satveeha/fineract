@@ -16,7 +16,7 @@ import org.apache.fineract.portfolio.naaccount.exception.ApiException;
 import org.apache.fineract.portfolio.naaccount.model.Request;
 import org.apache.fineract.portfolio.naaccount.model.Response;
 import org.apache.fineract.portfolio.naaccount.service.RepaymentSchedulerService;
-import org.apache.fineract.portfolio.naaccount.service.SampleService;
+import org.apache.fineract.portfolio.naaccount.service.DatabaseAccessService;
 import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -31,12 +31,12 @@ import org.springframework.stereotype.Component;
 public class RepaymentSchedulerAPI {
 
     private final RepaymentSchedulerService repaymentSchedulerService;
-    private final SampleService sampleService;
+    private final DatabaseAccessService databaseAccessService;
 
     @Autowired
-    public RepaymentSchedulerAPI(RepaymentSchedulerService repaymentSchedulerService, SampleService sampleService) {
+    public RepaymentSchedulerAPI(RepaymentSchedulerService repaymentSchedulerService, DatabaseAccessService sampleService) {
         this.repaymentSchedulerService = repaymentSchedulerService;
-        this.sampleService = sampleService;
+        this.databaseAccessService = sampleService;
     }
 
     @POST
@@ -46,11 +46,9 @@ public class RepaymentSchedulerAPI {
     public List<Response> generateNewPaymentPlan(@Parameter Request request) throws ApiException {
         List<Response> response = repaymentSchedulerService.generateSchedule(request);
 
-        Optional<Loan> loanData = this.sampleService.retrieveLoanById(request.getLoanId());
+        Optional<Loan> loanData = this.databaseAccessService.retrieveLoanById(request.getLoanId());
         if (!loanData.isEmpty()) {
             Loan loan = loanData.get();
-            // List<LoanRepaymentScheduleInstallment> installments =
-            // this.sampleService.retrieveRepaymentScheduleInstallmentByLoanId(loan);
             List<LoanRepaymentScheduleInstallment> installments = loan.getRepaymentScheduleInstallments();
             int installment = request.getInstallment();
 
@@ -60,7 +58,7 @@ public class RepaymentSchedulerAPI {
                         repaymentSchedule.updatePrincipal(repaymentCalculatedData.getPrincipalDue());
                         repaymentSchedule.updateInterestCharged(repaymentCalculatedData.getInterestDue());
                         repaymentSchedule.updateDueDate(LocalDate.parse(repaymentCalculatedData.getPaymentDate()));
-                        this.sampleService.saveLoanRepaymentScheduleInstallment(repaymentSchedule);
+                        this.databaseAccessService.saveLoanRepaymentScheduleInstallment(repaymentSchedule);
                         break;
                     }
                 }

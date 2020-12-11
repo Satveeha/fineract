@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import org.codehaus.jackson.annotate.JsonAutoDetect;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.codehaus.jackson.annotate.JsonProperty;
 
 @JsonAutoDetect
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -18,10 +19,12 @@ public class Request {
     private String interestStartDate;
     private String principalStartDate;
     private Integer noOfDecimal;
+    @JsonProperty
     private boolean isDiminishingPrincipal;
     private Integer interestRepaymentFrequency;
     private Integer principalRepaymentFrequency;
     private Double nominalInterestRate;
+    @JsonProperty
     private boolean isInterestDueWithPrincipal;
     private Integer principalRepaymentDayOfMonth;
     private Integer interestRepaymentDayOfMonth;
